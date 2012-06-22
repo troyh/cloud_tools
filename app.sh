@@ -4,6 +4,8 @@
 #
 # Usage: app.sh
 
+PLAY_DIR=~/play-2.0/
+
 # if [ -z $1 ]; then
 # 	echo "Usage: app.sh"
 # 	echo
@@ -30,21 +32,19 @@ done
 #
 # Install Play! 2.0 Framework (from http://www.playframework.org/documentation/2.0/Installing)
 #
-apt-get --assume-yes install \
-	unzip \
-	scala
+apt-get --assume-yes install unzip scala
 
-if [ ! -d ~/play-2.0 ]; then
+if [ ! -d $PLAY_DIR ]; then
 	if [ ! -f play-2.0.zip ]; then
 		curl -O http://download.playframework.org/releases/play-2.0.zip
 	fi
 	unzip play-2.0.zip
 fi
-export PATH=$PATH:~/play-2.0/
+export PATH=$PATH:$PLAY_DIR
 
 #
 # Start Play
 #
-echo PATH=$PATH
+# echo PATH=$PATH
 cd ~/beercrush_web
-play
+$PLAY_DIR/play
